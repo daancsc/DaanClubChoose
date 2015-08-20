@@ -13,7 +13,7 @@
                             <option value="#"></option>
                             <option value="./admin.noresult">全部</option>
                             @foreach($classes as $class)
-                                <option value="./admin.noresult.{{$class->id}}">{{$class->name}}</option>
+                                <option value="./admin.noresult.{{$class}}">{{$class}}</option>
                             @endforeach
                         </select>
                     </td>
