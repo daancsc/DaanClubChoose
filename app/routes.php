@@ -49,6 +49,7 @@ Route::group(array('before' => 'auth'), function()
     Route::get('/admin.result','ResultController@resultview');
     Route::get('/admin.result.{sort}.{id}','ResultController@resultfind');
     Route::get('/admin.noresult','ResultController@noresultview');
+    Route::get('/admin.noresult.{id}','ResultController@noresultfind');
     Route::get('/admin.reset','ResetController@reset');
     Route::post('/admin.reset','ResetController@resetwrite');
     Route::get('/admin.deal','DealController@dealview');

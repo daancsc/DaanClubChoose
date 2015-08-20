@@ -2,7 +2,25 @@
 
 @section('main')
     <div class="ui grid {{!Agent::isMobile()?'container':''}} stackable" style="margin-top:3em;">
-        <form class="ui large form  sixteen wide column" method="post" action="./admin.student" style="margin-left:5em;">
+        <form class="ui large form  sixteen wide column" method="post" action="" style="margin-left:5em;">
+            <table class="ui very basic table center aligned" border="0">
+                <thead><th colspan="10"><h4>選填狀態</h4></th></thead>
+                <tbody>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="4">
+                        <select class="ui dropdown search" name="club"  onChange="location = this.options[this.selectedIndex].value;">
+                            <option value="#"></option>
+                            <option value="./admin.noresult">全部</option>
+                            @foreach($classes as $class)
+                                <option value="./admin.noresult.{{$class->id}}">{{$class->name}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td colspan="3"></td>
+                </tr>
+                </tbody>
+            </table>
             <table class="ui very basic table center aligned" border="0">
                 <thead><th colspan="6"><h4>未錄取名單</h4></th></thead>
                 <tbody>

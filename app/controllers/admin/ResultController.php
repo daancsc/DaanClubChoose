@@ -77,5 +77,32 @@ class ResultController extends BaseController {
 
     }
 
+    public function noresultfind($id){
+        $students=Student::where('class','=',$id)->get();
+        for($i=0;$i<count($students);$i++){
+            if(Choose::where('stu_id','=',$students[$i]->id)->count()==0){
+                $noresult[]=$students[$i];
+                $because[]='未選課';
+            }
+            else{
+                if(Choose::where('stu_id','=',$students[$i]->id)->first()->result==null){
+                    $noresult[]=$students[$i];
+                    $because[]='未分發上';
+                }
+                else if(Club::where('id','=',Choose::where('stu_id','=',$students[$i]->id)->first()->result)->count()==0){
+                    $noresult[]=$students[$i];
+                    $because[]='原錄取課程被刪除';
+                }
+            }
+        }
+        if(isset($noresult)){
+            return View::make('admin.noresult')->with('noresult',$noresult)->with('because',$because);
+        }
+        else{
+            return View::make('admin.noresult');
+        }
+
+    }
+
 
 }
