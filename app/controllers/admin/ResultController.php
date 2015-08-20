@@ -24,7 +24,7 @@ class ResultController extends BaseController {
             case 'class':
                 $class=Student::where('class','=',$id)->get();
                 for($i=0;$i<count($class);$i++) {
-                    if(Choose::where('stu_id','=',$class[$i]->id)->count()<0) goto no;
+                    if(Choose::where('stu_id','=',$class[$i]->id)->count()==0) goto no;
                     if(Choose::where('stu_id','=',$class[$i]->id)->first()->result!=null && Club::where('id','=',Choose::where('stu_id','=',$class[$i]->id)->first()->result)->count()>0){
                         $result[]=Club::find(Choose::where('stu_id','=',$class[$i]->id)->first()->result)->name;
                     } else{
