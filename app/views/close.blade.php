@@ -10,7 +10,7 @@
             <br>
             <h2 class="ui blue image header">
                 <div class="content">
-                    <i class="icon arrow down" style="font-size: 8em;"></i><br>
+                    <i class="arrow down icon" style="font-size: 8em;"></i><br>
                     系統維護中<br>請稍後在來訪 謝謝！
                 </div>
             </h2>
