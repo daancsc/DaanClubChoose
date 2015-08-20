@@ -50,5 +50,8 @@
             <br>
             <br>
         </form>
+        <script>
+            $('.ui.dropdown').dropdown();
+        </script>
     </div>
 @endsection
