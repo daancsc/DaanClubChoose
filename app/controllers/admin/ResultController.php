@@ -52,6 +52,7 @@ class ResultController extends BaseController {
 
     public function noresultview(){
         $students=Student::all();
+        $classes=Student::distinct()->lists('class');
         for($i=0;$i<count($students);$i++){
             if(Choose::where('stu_id','=',$students[$i]->id)->count()==0){
                 $noresult[]=$students[$i];
@@ -69,10 +70,10 @@ class ResultController extends BaseController {
             }
         }
         if(isset($noresult)){
-            return View::make('admin.noresult')->with('noresult',$noresult)->with('because',$because);
+            return View::make('admin.noresult')->with('noresult',$noresult)->with('because',$because)->with('classes',$classes);
         }
         else{
-            return View::make('admin.noresult');
+            return View::make('admin.noresult')->with('classes',$classes);
         }
 
     }
@@ -96,10 +97,10 @@ class ResultController extends BaseController {
             }
         }
         if(isset($noresult)){
-            return View::make('admin.noresult')->with('noresult',$noresult)->with('because',$because);
+            return View::make('admin.noresult')->with('noresult',$noresult)->with('because',$because)->with('classes',$classes);
         }
         else{
-            return View::make('admin.noresult');
+            return View::make('admin.noresult')->with('classes',$classes);
         }
 
     }
