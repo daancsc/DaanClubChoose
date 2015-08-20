@@ -177,7 +177,7 @@
                                     <i class="edit icon"></i>
                                 </a>
                             </td>
-                            <td>{{$res->choose->count()>0?Club::find($res->choose->result)->name:'無'}}</td>
+                            <td>{{Choose::where('stu_id','=',$res->id)->count()>0&&$res->choose->result!=null?Club::find($res->choose->result)->name:'無'}}</td>
                             <td>
                                 <a onclick="del({{$res->id}})">
                                     <i class="remove icon"></i>
