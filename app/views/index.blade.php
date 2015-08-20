@@ -53,6 +53,8 @@
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <button class="fluid ui button blue {{$status==0?'disabled':''}}" {{$status!=0?'type="submit"':''}}>登入</button>
         <p></p>
+        <a href="./tmp/class.pdf" style="font-size: 2em;">>>課程總覽<<</a>
+        <p></p>
         <a href="./tmp/howto.pdf">系統使用說明</a>
         <p></p>
         <div class="ui segment">
