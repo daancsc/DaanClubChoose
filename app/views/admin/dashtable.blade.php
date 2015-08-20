@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('main')
-    <div class="ui grid {{!Agent::isMobile()?'container':''}} stackable" style="margin-top:3em;">
+    <div class="ui middle aligned center aligned grid {{!Agent::isMobile()?'container':''}} stackable" style="margin-top:3em;">
         <div class="ui card six wide column center aligned"  style="margin-left:5em;">
             <div class="content">
                 <div class="header">學生</div>

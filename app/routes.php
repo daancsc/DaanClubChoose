@@ -57,6 +57,10 @@ Route::group(array('before' => 'auth'), function()
     Route::post('/admin.doc','WordController@docmake');
 });
 
+Route::get('/error',function(){
+    return View::make('error');
+});
+
 /*
 Route::post('/login','StudentController@login');
 
