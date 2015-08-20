@@ -80,6 +80,7 @@ class ResultController extends BaseController {
 
     public function noresultfind($id){
         $students=Student::where('class','=',$id)->get();
+        $classes=Student::distinct()->lists('class');
         for($i=0;$i<count($students);$i++){
             if(Choose::where('stu_id','=',$students[$i]->id)->count()==0){
                 $noresult[]=$students[$i];
