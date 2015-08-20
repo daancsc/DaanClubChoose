@@ -30,7 +30,7 @@
 
     <div class="ui fluid center aligned segment" style="background-color:#ff9800!important;margin-bottom:-10px;">
         <center>
-            <h5 style="color:white;">By 大安高工電腦研究社 16th網管陳典佑</h5>
+            <h5 style="color:white;">By <a href="http://dacsc.club">大安高工電腦研究社</a> 16th網管陳典佑</h5>
         </center>
     </div>
 
