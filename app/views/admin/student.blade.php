@@ -116,7 +116,7 @@
 
             @if(isset($result))
                 <table class="ui very basic table center aligned" border="0">
-                    <thead><th colspan="12"><h4>搜尋結果</h4></th></thead>
+                    <thead><th colspan="13"><h4>搜尋結果</h4></th></thead>
                     <tbody>
                     <tr>
                         <td style="font-size: 0.8em;padding: 0em;">編號</td>
@@ -186,7 +186,7 @@
                         </tr>
                     @endforeach
                     <tr>
-                        <td colspan="12">
+                        <td colspan="13">
                             <div class="ui buttons">
                                 <button class="ui large positive submit button" type="submit" name="modify">修改送出</button>
                                 <div class="or"></div>
