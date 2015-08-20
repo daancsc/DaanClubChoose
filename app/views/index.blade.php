@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="twelve wide column" style="{{!Agent::isMobile()?'margin-top:40px;':''}}">
-    @if($important!=0)
+    @if(!$important==0)
         <div class="ui warning message">
             <div class="header">重要公告</div>
             {{$important}}
