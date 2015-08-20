@@ -130,6 +130,7 @@
                         <td style="font-size: 0.8em;padding: 0em;">強制</td>
                         <td style="font-size: 0.8em;padding: 0em;">強制錄取</td>
                         <td style="font-size: 0.8em;padding: 0em;">修改志願</td>
+                        <td style="font-size: 0.8em;padding: 0em;">結果</td>
                         <td style="font-size: 0.8em;padding: 0em;">刪除</td>
                     </tr>
                     @foreach($result as $res)
@@ -176,6 +177,7 @@
                                     <i class="edit icon"></i>
                                 </a>
                             </td>
+                            <td>{{Club::find($res->choose->result)->name or '無'}}</td>
                             <td>
                                 <a onclick="del({{$res->id}})">
                                     <i class="remove icon"></i>
