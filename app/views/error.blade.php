@@ -10,9 +10,15 @@
             <br>
             <h2 class="ui blue image header">
                 <div class="content">
-                    抱歉系統發生神奇的錯誤<br>請回上一頁重新送出<br>如問題沒有改善 請email至yoyo930021+netmange@gmail.com
+                    <i class="bug down" style="font-size: 8em;"></i><br>
+                    抱歉系統發生神奇的錯誤(bug)<br>請回上一頁重新送出<br>如問題沒有改善 請email至<br>yoyo930021+netmange@gmail.com
                 </div>
             </h2>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
     </div>
 @endsection
