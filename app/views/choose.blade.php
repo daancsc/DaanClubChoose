@@ -104,6 +104,7 @@
                     tempname{{$i}}=clubsname[clubsnum.indexOf($(this).children("input").val())];
                     clubsname.splice(clubsnum.indexOf($(this).children("input").val()),1);
                     clubsnum.remove($(this).children("input").val());
+                    clubslast.remove($(this).children("input").val());
 
                     for(var y=1;y<={{$choosemax}};y++)
                     {
