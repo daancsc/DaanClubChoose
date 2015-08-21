@@ -106,8 +106,10 @@ class StudentController extends BaseController {
     public function studentdel($id){
         $student=Student::find($id);
         $student->delete();
-        $choose=Choose::where('stu_id','=',$id)->first();
-        $choose->delete();
+	if(Choose::where('stu_id','=',$id)->count()>0){
+		$choose=Choose::where('stu_id','=',$id)->first();
+		$choose->delete();
+	}
         return Redirect::to('admin.student')->with('write','3');
     }
     public function studentforced($id,$clubid=null){
