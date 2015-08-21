@@ -99,7 +99,8 @@ Route::filter('https',function()
 
 Route::filter('stu_login',function()
 {
-	if(!Session::get('studentlogin')==true) {
+	$status = Settings::where('item', 'status')->first();
+	if(!Session::get('studentlogin')==true || $status->value==0) {
 		return Redirect::to('/');
 	}
 });
