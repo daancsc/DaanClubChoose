@@ -80,3 +80,8 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+$timezone = "asia/taipei";
+if(function_exists('date_default_timezone_set')){
+	date_default_timezone_set($timezone);
+}
