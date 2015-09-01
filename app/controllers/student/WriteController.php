@@ -31,6 +31,13 @@ class WriteController extends BaseController {
                 }
             }
         }
+	$num=count($choose);
+	for($i=0;$i<$num;$i++){
+	    if(!is_numeric($choose[$i])){
+		unset($choose[$i]);
+	    }
+	}
+	//dd($choose);
         for($i=0;$i<count($choose);$i++) {
             $result[$i]=Club::where('id','=',$choose[$i])->first();
         }
@@ -48,7 +55,7 @@ class WriteController extends BaseController {
         if(Choose::where('stu_id','=',Session::get('id'))->count()==0&&$change!=2) {
             $choose1=new Choose;
             $choose1->stu_id=Session::get('id');
-            for($w=0;$w<15;$w++){
+            for($w=0;$w<count($choose);$w++){
                 $choose1->{"choose".($w+1)}=$choose[$w];
             }
             $choose1->save();
@@ -71,7 +78,7 @@ class WriteController extends BaseController {
                 $club->save();
             }
 
-            for($w=0;$w<15;$w++){
+            for($w=0;$w<count($choose);$w++){
                 $choose1->{"choose".($w+1)}=$choose[$w];
             }
             $choose1->result = NULL;
@@ -84,7 +91,7 @@ class WriteController extends BaseController {
         }
         else {
             $choose1=Choose::where('stu_id','=',Session::get('id'))->first();
-            for($w=0;$w<15;$w++){
+            for($w=0;$w<count($choose);$w++){
                 $choose1->{"choose".($w+1)}=$choose[$w];
             }
             $choose1->save();

@@ -18,11 +18,13 @@ Route::group(array('before' => 'stu_login'), function()
 {
     Route::get('/logout','StuAccountController@logout');
     Route::get('/student','RouteController@chooselist');
-    Route::post('/student','WriteController@choosewrite');
+    Route::post('/student','WriteController@choosewrite');   
     Route::get('/chosenchange','ChangeController@chosenchange');
     Route::post('/resultwrite','WriteController@write');
     Route::get('/noresultchange','ChangeController@noresultchange');
 });
+
+
 
 
 
@@ -60,7 +62,7 @@ Route::group(array('before' => 'auth'), function()
 
 
 Route::when('admin*','https');
-Route::when('*', 'csrf', array('post'));
+//Route::when('*', 'csrf', array('post'));
 
 
 

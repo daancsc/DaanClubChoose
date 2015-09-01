@@ -63,11 +63,15 @@ class RouteController extends BaseController {
             } else if ($ifchosen == 1 && Session::get('change') != 2) {
                 $choose = Choose::where('stu_id', '=', Session::get('id'))->first();
                 $choosemax = Settings::where('item', 'chooseMax')->first();
+		//dd($choose);
                 for($w=0;$w<15;$w++){
                     $result[$w]=$choose->{"choose".($w+1)};
                 }
                 for ($i = 0; $i < 15; $i++) {
-                    $clubschoose[$i] = Club::where('id', '=', $result[$i])->first();
+		    if($result[$i]!=null){
+		        $clubschoose[$i] = Club::where('id', '=', $result[$i])->first();
+		    }
+                    
                 }
                 $resulttitle = Settings::where('item', 'resulttitle')->first();
                 return View::make('result')->with('result', $clubschoose)->with('chosen', '1')->with('title',$resulttitle->value);
