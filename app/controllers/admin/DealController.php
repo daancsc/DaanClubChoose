@@ -66,12 +66,24 @@ class DealController extends BaseController {
             for($i=0;$i<count($students);$i++){
                 $clubran=rand(0,count($club_id)-1);
                 if($club_last[$clubran]>0){
-                    $students[$i]->choose->result=$club_id[$clubran];
-                    //$students[$i]->stage=Settings::where('item','stage')->first()->value;
-                    $students[$i]->change2=0;
-                    $students[$i]->save();
-                    $students[$i]->push();
-                    $club_last[$clubran]--;
+		    if(Choose::where('stu_id','=',$students[$i]->id)->count()>0){
+		    	$students[$i]->choose->result=$club_id[$clubran];
+                        $students[$i]->stage=Settings::where('item','stage')->first()->value;
+                        $students[$i]->change2=0;
+                        $students[$i]->save();
+                        $students[$i]->push();
+                        $club_last[$clubran]--;
+ 		    }else{
+			$choose=new Choose;
+			$choose->stu_id=$students[$i]->id;
+			$choose->save();
+			$students[$i]->choose->result=$club_id[$clubran];
+                        $students[$i]->stage=Settings::where('item','stage')->first()->value;
+                        $students[$i]->change2=0;
+                        $students[$i]->save();
+                        $students[$i]->push();
+                        $club_last[$clubran]--;
+		    }
                 }
                 else{
                     $i--;

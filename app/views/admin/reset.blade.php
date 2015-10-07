@@ -32,6 +32,11 @@
                     課程資料上傳成功
                 </div>
             @endif
+	    @if(Session::get('write')==12)
+                <div class="ui info message">
+                    課程錄取數字校正成功
+                </div>
+            @endif
             <table class="ui very basic table center aligned" border="0">
                 <thead><th colspan="4"><h4>重置</h4></th></thead>
                 <tbody>
@@ -84,6 +89,15 @@
                     </td>
                     <td class="right aligned" colspan="2">
                         <!--<input type="submit" name="clearresult" value="清除" />-->
+                    </td>
+                </tr>
+		<tr>
+                    <td class="left aligned">課程人數清查</td>
+                    <td class="center aligned">
+                        請注意！執行此動作請先備份<br>如需使用此功能 請把按鈕取消註解<br>使用瀏覽器開發人員工具
+                    </td>
+                    <td class="right aligned" colspan="2">
+                        <input type="submit" name="clubscount" value="清查" />
                     </td>
                 </tr>
                 </tbody>

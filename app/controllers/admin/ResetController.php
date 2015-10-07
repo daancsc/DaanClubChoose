@@ -24,6 +24,7 @@ class ResetController extends BaseController {
         $clear=Input::get('clear');
         $complexstu=Input::get('complexstu');
         $clearresult=Input::get('clearresult');
+	$clubscount=Input::get('clubscount');
         if(isset($uploadstu)) {
             if (!Input::file('filestu')->isValid()||!Input::hasFile('filestu')) {
                 dd("檔案上傳錯誤");
@@ -176,7 +177,14 @@ class ResetController extends BaseController {
                 $student->save();
             }
             return Redirect::to('admin.reset')->with('write','8');
-        }
+        }else if(isset($clubscount)){
+	    $clubs=Club::all();
+	    foreach($clubs as $club){
+	    	$club->stu_in=Choose::where('result','=',$club->id)->count();
+		$club->save();
+	    }
+	    return Redirect::to('admin.reset')->with('write','12');
+	}
     }
 
 

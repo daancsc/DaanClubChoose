@@ -132,6 +132,7 @@ class StudentController extends BaseController {
             }
             else {
                 $choose=new Choose;
+		$choose->stu_id=$id;
                 $choose->result=$clubid;
                 $choose->save();
             }

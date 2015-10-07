@@ -31,7 +31,8 @@ class WordController extends BaseController {
                 $clubchoose=Choose::where('result','=',$id)->orderBy('stu_id')->get();
                 $stuchoose="";
                 for($y=0;$y<count($clubchoose);$y++) {
-                    $stuchoose[]=Student::find($clubchoose[$y]->stu_id);
+		    if(Student::where('id','=',$clubchoose[$y]->stu_id)->count()>0)
+                    	$stuchoose[]=Student::find($clubchoose[$y]->stu_id);
                 }
 
                 $section = $phpWord->addSection(array( 'marginTop' => "1815",'marginLeft' => "1800",'marginRight' => "1415",'marginBottom' => "990"));
@@ -69,14 +70,38 @@ class WordController extends BaseController {
                 $table->addCell(1100,$styleCell)->addText('第七節',$fontStyle,array('align'=>'center'));
                 for ($r = 0; $r < count($stuchoose); $r++) {
                     $table->addRow(100);
-                    $table->addCell(1750,$styleCell)->addText($r+1,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($stuchoose[$r]->class,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($stuchoose[$r]->account,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($stuchoose[$r]->seat,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($stuchoose[$r]->name,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell);
-                    $table->addCell(1750,$styleCell);
+                    $table->addCell(750,$styleCell)->addText($r+1,$fontStyle,array('align'=>'center'));
+                    $table->addCell(1200,$styleCell)->addText($stuchoose[$r]->class,$fontStyle,array('align'=>'center'));
+                    $table->addCell(1100,$styleCell)->addText($stuchoose[$r]->account,$fontStyle,array('align'=>'center'));
+                    $table->addCell(750,$styleCell)->addText($stuchoose[$r]->seat,$fontStyle,array('align'=>'center'));
+                    $table->addCell(1100,$styleCell)->addText($stuchoose[$r]->name,$fontStyle,array('align'=>'center'));
+                    $table->addCell(1100,$styleCell);
+                    $table->addCell(1100,$styleCell);
                 }
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
+		$section->addTextBreak(1,array('name'=>'新細明體', 'size'=>10,'color'=>'FFFFFF'));
             }
 
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
@@ -95,7 +120,7 @@ class WordController extends BaseController {
                 $class=Student::where('class','=',$id)->get();
                 $result="";
                 for($i=0;$i<count($class);$i++) {
-                    if(Choose::where('stu_id','=',$class[$i]->id)->first()->result!=null && Club::where('id','=',Choose::where('stu_id','=',$class[$i]->id)->first()->result)->count()>0)
+                    if(Choose::where('stu_id','=',$class[$i]->id)->count()>0&&Choose::where('stu_id','=',$class[$i]->id)->first()->result!=null && Club::where('id','=',Choose::where('stu_id','=',$class[$i]->id)->first()->result)->count()>0)
                         $result[]=Club::find(Choose::where('stu_id','=',$class[$i]->id)->first()->result);
                     else
                         $result[]='無';
@@ -120,18 +145,20 @@ class WordController extends BaseController {
                 $phpWord->addTableStyle('Fancy Table', $styleTable);
                 $table = $section->addTable('Fancy Table');
                 $table->addRow(100);
-                $table->addCell(1100,$styleCell)->addText('學號',$fontStyle,array('align'=>'center'));
-                $table->addCell(750,$styleCell)->addText('座號',$fontStyle,array('align'=>'center'));
+                $table->addCell(600,$styleCell)->addText('學號',$fontStyle,array('align'=>'center'));
+                $table->addCell(150,$styleCell)->addText('座號',$fontStyle,array('align'=>'center'));
                 $table->addCell(1100,$styleCell)->addText('姓名',$fontStyle,array('align'=>'center'));
                 $table->addCell(3000,$styleCell)->addText('分發結果',$fontStyle,array('align'=>'center'));
+                $table->addCell(4000,$styleCell)->addText('上課地點',$fontStyle,array('align'=>'center'));
                 $table->addCell(2000,$styleCell)->addText('請簽名確認',$fontStyle,array('align'=>'center'));
                 for ($r = 0; $r < count($class); $r++) {
                     $table->addRow(100);
-                    $table->addCell(1750,$styleCell)->addText($class[$r]->account,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($class[$r]->seat,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($class[$r]->name,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell)->addText($result[$r]->name,$fontStyle,array('align'=>'center'));
-                    $table->addCell(1750,$styleCell);
+                    $table->addCell(600,$styleCell)->addText($class[$r]->account,$fontStyle,array('align'=>'center'));
+                    $table->addCell(150,$styleCell)->addText($class[$r]->seat,$fontStyle,array('align'=>'center'));
+                    $table->addCell(1100,$styleCell)->addText($class[$r]->name,$fontStyle,array('align'=>'center'));
+                    $table->addCell(3000,$styleCell)->addText((isset($result[$r]->name)?$result[$r]->name:''),$fontStyle,array('align'=>'center'));
+                    $table->addCell(4000,$styleCell)->addText((isset($result[$r]->place)?$result[$r]->place:''),$fontStyle,array('align'=>'center'));
+		    $table->addCell(2000,$styleCell);
                 }
             }
 

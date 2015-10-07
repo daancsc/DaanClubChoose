@@ -87,25 +87,26 @@
                 '{{$clubs[$i]->max-$clubs[$i]->stu_in}}'@if($i!=(count($clubs)-1)),@endif
                 @endfor
             ];
-
             for(var i=0;i<clubsnum.length;i++) {
                 $('#choose1').children(".menu").append("<div class=item data-value=" + clubsnum[i] + ">" + clubsname[i] +"<"+clubslast[i]+">"+ "</div>");
             }
             @for ($i=1;$i<=$choosemax;$i++)
                 var tempnum{{$i}}=0;
                 var tempname{{$i}}="";
+                var templast{{$i}}=0;
                 $('#choose{{$i}}').change(function (){
                     if(tempnum{{$i}}!=0)
                     {
                         clubsname[clubsname.length]=tempname{{$i}};
                         clubsnum[clubsnum.length]=tempnum{{$i}};
+                        clubslast[clubslast.length]=templast{{$i}};
                     }
                     tempnum{{$i}}=$(this).children("input").val();
                     tempname{{$i}}=clubsname[clubsnum.indexOf($(this).children("input").val())];
+                    templast{{$i}}=clubslast[clubsnum.indexOf($(this).children("input").val())];
                     clubsname.splice(clubsnum.indexOf($(this).children("input").val()),1);
+                    clubslast.splice(clubsnum.indexOf($(this).children("input").val()),1);
                     clubsnum.remove($(this).children("input").val());
-                    clubslast.remove($(this).children("input").val());
-
                     for(var y=1;y<={{$choosemax}};y++)
                     {
                         if(y!={{$i}})
@@ -120,6 +121,7 @@
             @endfor
 
             $(".chooseall").children("input").val('');
+
 
             @if(isset($clubschoose))
                 function start() {
